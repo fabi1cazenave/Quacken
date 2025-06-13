@@ -1,0 +1,255 @@
+units:
+  kw: cx
+  kh: cy
+  px: kw + 5
+  py: kh + 5
+
+points:
+  zones:
+
+    matrix:
+      anchor.shift: [100, -100]  # Fix placement en Kicad sheet
+      key:
+        padding: kh
+        spread:  kw
+      columns:
+        outer.key.column_net: P10
+        pinky.key:
+          stagger: 0.2kh
+          column_net: P16
+        ring.key:
+          stagger: 0.6kh
+          splay: -6
+          origin: [-0.5kw, -0.5kh]
+          column_net: P14
+        middle.key:
+          stagger: 0.25kh
+          splay: -4
+          origin: [-0.5kw, -0.5kh]
+          column_net: P7
+        index.key:
+          stagger: -0.25kh
+          column_net: P8
+        inner.key:
+          stagger: -0.195kh
+          column_net: P9
+
+      rows:
+        bottom:
+          padding: kh
+          row_net: P18
+          mirror.row_net: P5
+        home:
+          padding: kh
+          row_net: P19
+          mirror.row_net: P4
+        top:
+          padding: kh
+          row_net: P20
+          mirror.row_net: P3
+
+    thumb:
+      key:
+        padding: kh
+        spread:  kw
+        row_net: P15
+        mirror.row_net: P6
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0, -1.4kh]
+      columns:
+        tucky.key:
+          column_net: P7
+        comfy.key:
+          spread: 1.1kw
+          splay: -15
+          origin: [-0.5kw, -0.5kh]
+          column_net: P8
+        reachy.key:
+          spread: 1.1kw
+          splay: -15
+          origin: [-0.5kw, -0.5kh]
+          column_net: P9
+
+  rotate: -10
+  mirror:
+    ref: matrix_index_bottom
+    distance: 5.1kw
+
+outlines:
+  keys:
+    - what: rectangle
+      where: true
+      size: [kw - 1, kh - 1]
+
+  electronics:
+    # MCU / IO expander
+    - what: rectangle
+      where: mirror_matrix_middle_bottom
+      adjust.shift: [-0.15kw, -1.15kh]
+      asym: both
+      size: 10
+    # Trackpad
+    - what: circle
+      where: matrix_inner_bottom
+      radius: 35 / 2
+      adjust.shift: [1.72kw, 0.1kh]
+
+  board:
+    - what: polygon
+      operation: stack
+      fillet: 5
+      points:
+        - ref: thumb_reachy
+          shift: [0.65px, 0.5py]
+
+        - ref: thumb_reachy
+          shift: [0.5px, -0.55py]
+        - ref: thumb_reachy
+          shift: [-0.5kw, -0.55py]
+        - ref: thumb_tucky
+          shift: [0.5kw, -0.55py]
+        - ref: thumb_tucky
+          shift: [-0.55px, -0.55py]
+        - ref: thumb_tucky
+          shift: [-0.55px, -0.1py]
+        - ref: matrix_pinky_bottom
+          shift: [px, -0.75py]
+        - ref: matrix_pinky_bottom
+          shift: [0.5px, -0.65py]
+        - ref: matrix_outer_bottom
+          shift: [0.5px, -0.5py]
+        - ref: matrix_outer_bottom
+          shift: [0px, -0.5py]
+        - ref: matrix_outer_bottom
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_outer_top
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_pinky_top
+          shift: [-0.5kw, 0.75py]
+        - ref: matrix_ring_top
+          shift: [-0.5kw, 0.55py]
+        - ref: matrix_middle_top
+          shift: [-0.5kw, 0.55py]
+        - ref: matrix_middle_top
+          shift: [0.5kw, 0.6py]
+        - ref: matrix_index_top
+          shift: [0.5px, 0.75py]
+
+        - ref: matrix_inner_top
+          shift: [0.55px, 0.80py]
+
+        - ref: mirror_matrix_index_top
+          shift: [0.5px, 0.75py]
+        - ref: mirror_matrix_middle_top
+          shift: [0.5kw, 0.6py]
+        - ref: mirror_matrix_middle_top
+          shift: [-0.5kw, 0.55py]
+        - ref: mirror_matrix_ring_top
+          shift: [-0.5kw, 0.55py]
+        - ref: mirror_matrix_pinky_top
+          shift: [-0.5kw, 0.75py]
+        - ref: mirror_matrix_outer_top
+          shift: [-0.5px, 0.5py]
+        - ref: mirror_matrix_outer_bottom
+          shift: [-0.5px, -0.5py]
+        - ref: mirror_matrix_outer_bottom
+          shift: [0px, -0.5py]
+        - ref: mirror_matrix_outer_bottom
+          shift: [0.5px, -0.5py]
+        - ref: mirror_matrix_pinky_bottom
+          shift: [0.5px, -0.65py]
+        - ref: mirror_matrix_pinky_bottom
+          shift: [px, -0.75py]
+        - ref: mirror_thumb_tucky
+          shift: [-0.55px, -0.1py]
+        - ref: mirror_thumb_tucky
+          shift: [-0.55px, -0.55py]
+        - ref: mirror_thumb_tucky
+          shift: [0.5kw, -0.55py]
+        - ref: mirror_thumb_reachy
+          shift: [-0.5kw, -0.55py]
+        - ref: mirror_thumb_reachy
+          shift: [0.5px, -0.55py]
+
+
+  combo:
+    - name: board
+    - operation: subtract
+      name: keys
+    - operation: subtract
+      name: electronics
+
+pcbs:
+  quacken_pcb:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      promicro:
+        what: promicro
+        where:
+          ref.aggregate.parts: [matrix_index_bottom, mirror_matrix_index_bottom]
+          shift: [0, -3]
+          rotate: -90
+
+      choc_hotswap_main:
+        what: choc_hummingbird
+        where: -/(pinky_(top|home))|((inner|outer))/
+        adjust.rotate: 180
+        params:
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+
+      choc_hummingbird_pinky:
+        what: choc_hummingbird
+        where: /pinky_(top|home)/
+        adjust.rotate: 180
+        params:
+          hummingbird: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+
+      choc_hummingbird_extensions:
+        what: choc_hummingbird
+        where: /(inner|outer)_(home|bottom)/
+        params:
+          hummingbird: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+
+      choc_regular_extensions:
+        what: choc_hummingbird
+        where: /(inner|outer)_top/
+        params:
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+
+      diodes_main:
+        what: diode_sod_323
+        where: -/(inner|outer|pinky_(home|bottom))/
+        adjust.shift: [0, 5]
+        adjust.rotate: 180
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+
+      diodes_hummingbird:
+        what: diode_sod_323
+        where: /(pinky_(home|bottom))|((inner|outer)_(top|home))/
+        adjust:
+          shift: [9, 0]
+          rotate: 90
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+
+      diodes_extensions:
+        what: diode_sod_323
+        where: /((inner|outer)_bottom)/
+        adjust.shift: [0, -5]
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
