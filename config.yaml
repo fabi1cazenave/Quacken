@@ -13,26 +13,26 @@ points:
         padding: kh
         spread:  kw
       columns:
-        outer.key.column_net: P10
+        outer.key.column_net: P16
         pinky.key:
           stagger: 0.2kh
-          column_net: P16
+          column_net: P14
         ring.key:
           stagger: 0.6kh
           splay: -6
           origin: [-0.5kw, -0.5kh]
-          column_net: P14
+          column_net: P15
         middle.key:
           stagger: 0.25kh
           splay: -4
           origin: [-0.5kw, -0.5kh]
-          column_net: P7
+          column_net: P8
         index.key:
           stagger: -0.25kh
-          column_net: P8
+          column_net: P7
         inner.key:
           stagger: -0.195kh
-          column_net: P9
+          column_net: P6
 
       rows:
         bottom:
@@ -52,24 +52,24 @@ points:
       key:
         padding: kh
         spread:  kw
-        row_net: P15
-        mirror.row_net: P6
+        row_net: P10
+        mirror.row_net: P9
       anchor:
         ref: matrix_index_bottom
         shift: [0, -1.4kh]
       columns:
         tucky.key:
-          column_net: P7
+          column_net: P8
         comfy.key:
           spread: 1.1kw
           splay: -15
           origin: [-0.5kw, -0.5kh]
-          column_net: P8
+          column_net: P7
         reachy.key:
           spread: 1.1kw
           splay: -15
           origin: [-0.5kw, -0.5kh]
-          column_net: P9
+          column_net: P6
 
   rotate: -10
   mirror:
@@ -136,8 +136,8 @@ outlines:
         - ref: matrix_index_top
           shift: [0.5px, 0.75py]
 
-        - ref: matrix_inner_top
-          shift: [0.55px, 0.80py]
+        - aggregate.parts: [matrix_inner_top, mirror_matrix_inner_top]
+          shift: [0, 0.525py]
 
         - ref: mirror_matrix_index_top
           shift: [0.5px, 0.75py]
@@ -193,63 +193,28 @@ pcbs:
           shift: [0, -3]
           rotate: -90
 
-      choc_hotswap_main:
-        what: choc_hummingbird
-        where: -/(pinky_(top|home))|((inner|outer))/
+      choc_main:
+        what: test_choc
+        where: -/inner|outer/
         adjust.rotate: 180
         params:
           hotswap: true
+          hummingbird: /pinky_(top|home)/
+          # XXX: Thubs are on row "default"
+          connect_below: -/top|default/
           from: "{{column_net}}"
           to: "{{colrow}}"
+          diode_from: "{{colrow}}"
+          diode_to: "{{row_net}}"
 
-      choc_hummingbird_pinky:
-        what: choc_hummingbird
-        where: /pinky_(top|home)/
-        adjust.rotate: 180
-        params:
-          hummingbird: true
-          from: "{{column_net}}"
-          to: "{{colrow}}"
-
-      choc_hummingbird_extensions:
-        what: choc_hummingbird
-        where: /(inner|outer)_(home|bottom)/
-        params:
-          hummingbird: true
-          from: "{{column_net}}"
-          to: "{{colrow}}"
-
-      choc_regular_extensions:
-        what: choc_hummingbird
-        where: /(inner|outer)_top/
+      choc_extensions:
+        what: test_choc
+        where: /inner|outer/
         params:
           hotswap: true
+          hummingbird: /home|bottom/
+          connect_below: -/bottom/
           from: "{{column_net}}"
           to: "{{colrow}}"
-
-      diodes_main:
-        what: diode_sod_323
-        where: -/(inner|outer|pinky_(home|bottom))/
-        adjust.shift: [0, 5]
-        adjust.rotate: 180
-        params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
-
-      diodes_hummingbird:
-        what: diode_sod_323
-        where: /(pinky_(home|bottom))|((inner|outer)_(top|home))/
-        adjust:
-          shift: [9, 0]
-          rotate: 90
-        params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
-
-      diodes_extensions:
-        what: diode_sod_323
-        where: /((inner|outer)_bottom)/
-        adjust.shift: [0, -5]
-        params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
+          diode_from: "{{colrow}}"
+          diode_to: "{{row_net}}"

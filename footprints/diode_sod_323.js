@@ -7,8 +7,13 @@ module.exports = {
   },
   body: p => {
     const text = `
-      (footprint "Diode_SMD:D_SOD-323" (layer "F.Cu")
+      (footprint "Diode_SMD:D_SOD-323" (layer "B.Cu")
         ${p.at  /* parametric position */ }
+
+        ${'' /* footprint reference */}
+        (fp_text reference "${p.ref}" (at 0 0) (layer F.SilkS) ${p.ref_hide} (effects (font (size 1.27 1.27) (thickness 0.15))))
+        (fp_text value "" (at 0 0) (layer F.SilkS) hide (effects (font (size 1.27 1.27) (thickness 0.15))))
+
 
         (descr "SOD-323")
         (tags "SOD-323")
@@ -20,7 +25,7 @@ module.exports = {
             (width 0.12)
             (type solid)
           )
-          (layer "F.SilkS")
+          (layer "B.SilkS")
         )
         (fp_line
           (start -1.61 -0.85)
@@ -29,7 +34,7 @@ module.exports = {
             (width 0.12)
             (type solid)
           )
-          (layer "F.SilkS")
+          (layer "B.SilkS")
         )
         (fp_line
           (start -1.61 0.85)
@@ -38,7 +43,7 @@ module.exports = {
             (width 0.12)
             (type solid)
           )
-          (layer "F.SilkS")
+          (layer "B.SilkS")
         )
         (fp_line
           (start -1.6 -0.95)
@@ -47,7 +52,7 @@ module.exports = {
             (width 0.05)
             (type solid)
           )
-          (layer "F.CrtYd")
+          (layer "B.CrtYd")
         )
         (fp_line
           (start -1.6 -0.95)
@@ -56,7 +61,7 @@ module.exports = {
             (width 0.05)
             (type solid)
           )
-          (layer "F.CrtYd")
+          (layer "B.CrtYd")
         )
         (fp_line
           (start -1.6 0.95)
@@ -65,7 +70,7 @@ module.exports = {
             (width 0.05)
             (type solid)
           )
-          (layer "F.CrtYd")
+          (layer "B.CrtYd")
         )
         (fp_line
           (start 1.6 -0.95)
@@ -74,7 +79,7 @@ module.exports = {
             (width 0.05)
             (type solid)
           )
-          (layer "F.CrtYd")
+          (layer "B.CrtYd")
         )
         (fp_line
           (start -0.9 -0.7)
@@ -83,7 +88,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start -0.9 0.7)
@@ -92,7 +97,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start -0.3 -0.35)
@@ -101,7 +106,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start -0.3 0)
@@ -110,7 +115,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start -0.3 0)
@@ -119,7 +124,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start 0.2 -0.35)
@@ -128,7 +133,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start 0.2 0)
@@ -137,7 +142,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start 0.2 0.35)
@@ -146,7 +151,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start 0.9 -0.7)
@@ -155,7 +160,7 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (fp_line
           (start 0.9 0.7)
@@ -164,19 +169,19 @@ module.exports = {
             (width 0.1)
             (type solid)
           )
-          (layer "F.Fab")
+          (layer "B.Fab")
         )
         (pad "1" smd roundrect
           (at -1.05 0 ${p.r})
           (size 0.6 0.45)
-          (layers "F.Cu" "F.Mask" "F.Paste")
+          (layers "B.Cu" "B.Mask" "B.Paste")
           (roundrect_rratio 0.25)
           ${p.to.str}
         )
         (pad "2" smd roundrect
           (at 1.05 0 ${p.r})
           (size 0.6 0.45)
-          (layers "F.Cu" "F.Mask" "F.Paste")
+          (layers "B.Cu" "B.Mask" "B.Paste")
           (roundrect_rratio 0.25)
           ${p.from.str}
         )

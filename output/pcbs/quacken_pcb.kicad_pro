@@ -134,7 +134,7 @@
         "min_track_width": 0.2,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.4,
-        "solder_mask_to_copper_clearance": 0.0,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [
@@ -579,6 +579,14 @@
       },
       {
         "netclass": "Default",
+        "pattern": "pinky_home"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "pinky_top"
+      },
+      {
+        "netclass": "Default",
         "pattern": "ring_bottom"
       },
       {
@@ -631,6 +639,14 @@
       },
       {
         "netclass": "Default",
+        "pattern": "mirror_pinky_home"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "mirror_pinky_top"
+      },
+      {
+        "netclass": "Default",
         "pattern": "mirror_ring_bottom"
       },
       {
@@ -679,27 +695,15 @@
       },
       {
         "netclass": "Default",
-        "pattern": "pinky_home"
-      },
-      {
-        "netclass": "Default",
-        "pattern": "pinky_top"
-      },
-      {
-        "netclass": "Default",
-        "pattern": "mirror_pinky_home"
-      },
-      {
-        "netclass": "Default",
-        "pattern": "mirror_pinky_top"
-      },
-      {
-        "netclass": "Default",
         "pattern": "outer_bottom"
       },
       {
         "netclass": "Default",
         "pattern": "outer_home"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "outer_top"
       },
       {
         "netclass": "Default",
@@ -711,6 +715,10 @@
       },
       {
         "netclass": "Default",
+        "pattern": "inner_top"
+      },
+      {
+        "netclass": "Default",
         "pattern": "mirror_outer_bottom"
       },
       {
@@ -719,23 +727,15 @@
       },
       {
         "netclass": "Default",
+        "pattern": "mirror_outer_top"
+      },
+      {
+        "netclass": "Default",
         "pattern": "mirror_inner_bottom"
       },
       {
         "netclass": "Default",
         "pattern": "mirror_inner_home"
-      },
-      {
-        "netclass": "Default",
-        "pattern": "outer_top"
-      },
-      {
-        "netclass": "Default",
-        "pattern": "inner_top"
-      },
-      {
-        "netclass": "Default",
-        "pattern": "mirror_outer_top"
       },
       {
         "netclass": "Default",
