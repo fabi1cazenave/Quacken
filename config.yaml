@@ -181,7 +181,7 @@ outlines:
       name: electronics
 
 pcbs:
-  quacken_pcb:
+  quacken_zero:
     outlines:
       main:
         outline: board
@@ -198,7 +198,6 @@ pcbs:
         where: -/inner|outer/
         adjust.rotate: 180
         params:
-          hotswap: true
           hummingbird: /pinky_(top|home)/
           # XXX: Thubs are on row "default"
           connect_below: -/top|default/
@@ -211,7 +210,6 @@ pcbs:
         what: test_choc
         where: /inner|outer/
         params:
-          hotswap: true
           hummingbird: /home|bottom/
           connect_below: -/bottom/
           from: "{{column_net}}"
