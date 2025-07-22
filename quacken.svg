@@ -82,11 +82,15 @@
   <script><![CDATA[// keyboard configuration
     const config = "martinet";
     const birds = {
+      // hummingbird-like, 32-34 keyx
+      "gorgebleue": ".col1, .col5m, .col6m, .col6",                      // bluethroat
       "martinet":   ".col1, .col5m, .col5 .bottom, .col6, .col6m .home", // swift
       "pinson":     ".col1, .col5m, .col5 .bottom, .col6, .col6m",       // oscine
       "hirondelle": ".col1, .col5, .col6m, .col6 .top, .col6 .bottom",   // sparrow
       "martin":     ".col1, .col5, .col6m, .col6",                       // kingfisher
+      // classic, 36-42 keyx
       "huppe":      ".col1m, .col5m, .col6, .col6m",                     // hoopoe
+      "epervier":   ".col1m, .col5m, .col6m, .col6 .top, .col6 .bottom", // sparrowhawk
       "chouette":   ".col1m, .col5m, .col6",                             // owl
       "corbeau":    ".col1m, .col5m, .col6m",                            // crow
     };
