@@ -6,11 +6,20 @@
 
   <style>
     body {
+      margin: 1em auto;
+      max-width: 64em;
       text-align: center;
+      font-family: sans-serif;
+    }
+    h1 {
+      margin-bottom: 0;
+    }
+    h1 + p {
+      margin-top: 0;
+      font-size: 1.2em;
     }
     svg {
       width: 100%;
-      height: 600px;
     }
 
     /* geometry (XXX magic numbers) */
@@ -18,16 +27,16 @@
     #right { transform: translate(884px, 5px) rotate(-10deg); }
     #outline { transform: translate(-194px, -242px) scale(3.34); }
 
-    #left .matrix { transform-origin: 0px 56px; }
+    #left  .matrix { transform-origin: 0px 56px; }
     #right .matrix { transform-origin: 70px 56px; }
-    .thumb { transform-origin: left; }
+    /* .thumb { transform-origin: left; } */
 
     #left .comfy,
-    #left .reachy { transform: translate(68px, 0px) rotate(15deg); }
-    #left .tucked { transform: translate(286px, 163px) rotate(10deg); }
+    #left .reachy { transform: translate(81px, 1px) rotate(15deg); }
+    #left .tucked { transform: translate(294px, 163px) rotate(10deg); }
     #right .comfy,
-    #right .reachy { transform: translate(-66px, 16px) rotate(-15deg); }
-    #right .tucked { transform: translate(-285px, 174px) rotate(-10deg); }
+    #right .reachy { transform: translate(-79px, 18px) rotate(-15deg); }
+    #right .tucked { transform: translate(-294px, 174px) rotate(-10deg); }
 
     /* color theme */
     :root {
@@ -61,10 +70,11 @@
       stroke-dasharray: 1 2;
     }
     @media (prefers-color-scheme: dark) {
-      .dualKey { fill: #666; }
-      rect     { fill: #444; }
       text     { fill: #bbb; }
-      #board   { fill: #333; stroke: #6668; }
+      rect     { fill: #262628; }
+      .dualKey { fill: #404042; }
+      #board   { fill: #1e1c22; stroke: #4458; }
+      #keys    { stroke: #f888; }
     }
   </style>
 
@@ -126,6 +136,8 @@
   </script>
 </head>
 <body>
+  <h1>Quacken</h1>
+  <p>Libre. Ergonomic. Polymorphic.</p>
   <select onchange="setConfig(this.value)">
     <option value="crow">Corbeau</option>
     <option value="owl">Chouette</option>
@@ -140,7 +152,7 @@
     <option value="oscine">Pinson</option>
   </select>
 
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 140 940 100">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -25 940 500">
     <g id="outline">
       <path id="board"
         d="M202.5044,90.8471
@@ -315,8 +327,6 @@
   </svg>
 
   <script>// keyboard layout
-    document.querySelector("select").selectedIndex = 1;
-    document.querySelector("select").focus();
     document.querySelectorAll(".matrix .key").forEach(key => {
       const dual = key.classList.contains("dual") ? `
         <rect width="${kw/2}" height="${kh/2}" rx="2" ry="2" y="${kh/2}" class="dualKey"/>
@@ -334,6 +344,8 @@
         <rect width="${kw}" height="${kh/2}" rx="2" ry="2" y="${kh/2}" class="dualKey"/>
       `;
     });
+    document.querySelector("select").selectedIndex = 1;
+    document.querySelector("select").focus();
   </script>
 </body>
 </html>
