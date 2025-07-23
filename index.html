@@ -1,6 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 140 940 100">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Quacken</title>
 
   <style>
+    body {
+      text-align: center;
+    }
+    svg {
+      width: 100%;
+      height: 600px;
+    }
+
     /* geometry (XXX magic numbers) */
     .matrix { transform-origin: bottom left; }
     .thumb { transform-origin: left; }
@@ -43,7 +55,7 @@
     }
   </style>
 
-  <script><![CDATA[// keyboard geometry -- could be hard-coded in the stylesheet
+  <script>// keyboard geometry -- could be hard-coded in the stylesheet
     const columns = [ "outer", "pinky", "ring", "middle", "index", "inner" ];
     const thumbs = [ "tucked", "comfy", "reachy" ]; // TODO
     const rows = [ "top", "home", "bottom" ];
@@ -77,16 +89,16 @@
     rows.forEach((name, i) => {
       addTransform(`.${name}`, `translateY(${i * kh}px)`);
     });
-  ]]></script>
+  </script>
 
-  <script><![CDATA[// keyboard configuration
-    const config = "martinet";
+  <script>// keyboard configuration
+    const config = "chouette";
     const birds = {
       // hummingbird-like, 32-34 keyx
       "gorgebleue": ".col1, .col5m, .col6m, .col6",                      // bluethroat
       "martinet":   ".col1, .col5m, .col5 .bottom, .col6, .col6m .home", // swift
       "pinson":     ".col1, .col5m, .col5 .bottom, .col6, .col6m",       // oscine
-      "hirondelle": ".col1, .col5, .col6m, .col6 .top, .col6 .bottom",   // sparrow
+      "hirondelle": ".col1, .col5, .col6m, .col6 .top, .col6 .bottom",   // swallcw
       "martin":     ".col1, .col5, .col6m, .col6",                       // kingfisher
       // classic, 36-42 keyx
       "huppe":      ".col1m, .col5m, .col6, .col6m",                     // hoopoe
@@ -94,154 +106,177 @@
       "chouette":   ".col1m, .col5m, .col6",                             // owl
       "corbeau":    ".col1m, .col5m, .col6m",                            // crow
     };
-    sheet.insertRule(`${birds[config]} { display: none }`);
-  ]]></script>
+    sheet.insertRule(`${birds[config]} { display: none }`, 0);
+    const setConfig = (name) => {
+      sheet.deleteRule(0);
+      sheet.insertRule(`${birds[name]} { display: none }`, 0);
+    };
+    setConfig("chouette");
+  </script>
+</head>
+<body>
+  <select onchange="setConfig(this.value)">
+    <option>corbeau</option>
+    <option selected>chouette</option>
+    <optiop>epervier</option>
+    <option>epervier</optiop>
+    <option>huppe</optiop>
+    <!-- 34 keys -->
+    <option>gorgebleue</option>
+    <option>martinet</option>
+    <option>hirondelle</option>
+    <!-- 32 keys -->
+    <option>martin</option>
+    <option>pinson</option>
+  </select>
 
-  <g id="left">
-    <g class="outer matrix">
-      <g class="col6m">
-        <g class="key top"/>
-        <g class="key home"/>
-      </g>
-      <g class="col6">
-        <g class="key top"/>
-        <g class="key home"/>
-        <g class="key bottom"/>
-      </g>
-
-      <g class="pinky matrix">
-        <g class="col5m">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 140 940 100">
+    <g id="left">
+      <g class="outer matrix">
+        <g class="col6m">
           <g class="key top"/>
           <g class="key home"/>
         </g>
-        <g class="col5">
-          <g class="key top"/>
-          <g class="key home"/>
-          <g class="key bottom"/>
-        </g>
-
-        <g class="ring matrix">
-          <g class="col4">
-            <g class="key top"/>
-            <g class="key home dual"/>
-            <g class="key bottom"/>
-          </g>
-
-          <g class="middle matrix">
-            <g class="col3">
-              <g class="key top"/>
-              <g class="key home dual"/>
-              <g class="key bottom"/>
-            </g>
-
-            <g class="index matrix">
-              <g class="col2">
-                <g class="key top"/>
-                <g class="key home dual"/>
-                <g class="key bottom"/>
-              </g>
-
-              <g class="inner matrix">
-                <g class="col1">
-                  <g class="key top"/>
-                  <g class="key home"/>
-                  <g class="key bottom"/>
-                </g>
-                <g class="col1m">
-                  <g class="key top"/>
-                  <g class="key home"/>
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-    </g>
-
-    <g class="tucked thumb">
-      <g class="key"/>
-      <g class="comfy thumb">
-        <g class="key"/>
-        <g class="reachy thumb">
-          <g class="key"/>
-        </g>
-      </g>
-    </g>
-  </g>
-
-  <g id="right">
-    <g class="outer matrix">
-      <g class="col6m">
-        <g class="key top"/>
-        <g class="key home"/>
-      </g>
-      <g class="col6">
-        <g class="key top"/>
-        <g class="key home"/>
-        <g class="key bottom"/>
-      </g>
-
-      <g class="pinky matrix">
-        <g class="col5m">
-          <g class="key top"/>
-          <g class="key home"/>
-        </g>
-        <g class="col5">
+        <g class="col6">
           <g class="key top"/>
           <g class="key home"/>
           <g class="key bottom"/>
         </g>
 
-        <g class="ring matrix">
-          <g class="col4">
+        <g class="pinky matrix">
+          <g class="col5m">
             <g class="key top"/>
-            <g class="key home dual"/>
+            <g class="key home"/>
+          </g>
+          <g class="col5">
+            <g class="key top"/>
+            <g class="key home"/>
             <g class="key bottom"/>
           </g>
 
-          <g class="middle matrix">
-            <g class="col3">
+          <g class="ring matrix">
+            <g class="col4">
               <g class="key top"/>
               <g class="key home dual"/>
               <g class="key bottom"/>
             </g>
 
-            <g class="index matrix">
-              <g class="col2">
+            <g class="middle matrix">
+              <g class="col3">
                 <g class="key top"/>
                 <g class="key home dual"/>
                 <g class="key bottom"/>
               </g>
 
-              <g class="inner matrix">
-                <g class="col1">
+              <g class="index matrix">
+                <g class="col2">
                   <g class="key top"/>
-                  <g class="key home"/>
+                  <g class="key home dual"/>
                   <g class="key bottom"/>
                 </g>
-                <g class="col1m">
-                  <g class="key top"/>
-                  <g class="key home"/>
+
+                <g class="inner matrix">
+                  <g class="col1">
+                    <g class="key top"/>
+                    <g class="key home"/>
+                    <g class="key bottom"/>
+                  </g>
+                  <g class="col1m">
+                    <g class="key top"/>
+                    <g class="key home"/>
+                  </g>
                 </g>
               </g>
             </g>
           </g>
         </g>
       </g>
-    </g>
 
-    <g class="tucked thumb">
-      <g class="key"/>
-      <g class="comfy thumb">
+      <g class="tucked thumb">
         <g class="key"/>
-        <g class="reachy thumb">
+        <g class="comfy thumb">
           <g class="key"/>
+          <g class="reachy thumb">
+            <g class="key"/>
+          </g>
         </g>
       </g>
     </g>
-  </g>
 
-  <script><![CDATA[// keyboard layout
+    <g id="right">
+      <g class="outer matrix">
+        <g class="col6m">
+          <g class="key top"/>
+          <g class="key home"/>
+        </g>
+        <g class="col6">
+          <g class="key top"/>
+          <g class="key home"/>
+          <g class="key bottom"/>
+        </g>
+
+        <g class="pinky matrix">
+          <g class="col5m">
+            <g class="key top"/>
+            <g class="key home"/>
+          </g>
+          <g class="col5">
+            <g class="key top"/>
+            <g class="key home"/>
+            <g class="key bottom"/>
+          </g>
+
+          <g class="ring matrix">
+            <g class="col4">
+              <g class="key top"/>
+              <g class="key home dual"/>
+              <g class="key bottom"/>
+            </g>
+
+            <g class="middle matrix">
+              <g class="col3">
+                <g class="key top"/>
+                <g class="key home dual"/>
+                <g class="key bottom"/>
+              </g>
+
+              <g class="index matrix">
+                <g class="col2">
+                  <g class="key top"/>
+                  <g class="key home dual"/>
+                  <g class="key bottom"/>
+                </g>
+
+                <g class="inner matrix">
+                  <g class="col1">
+                    <g class="key top"/>
+                    <g class="key home"/>
+                    <g class="key bottom"/>
+                  </g>
+                  <g class="col1m">
+                    <g class="key top"/>
+                    <g class="key home"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+
+      <g class="tucked thumb">
+        <g class="key"/>
+        <g class="comfy thumb">
+          <g class="key"/>
+          <g class="reachy thumb">
+            <g class="key"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <script>// keyboard layout
     document.querySelectorAll(".matrix .key").forEach(key => {
       const dual = key.classList.contains("dual") ? `
         <rect width="26" height="26" rx="2" ry="2" class="dualKey"/>
@@ -259,5 +294,6 @@
         <rect width="52" height="26" rx="2" ry="2" class="dualKey"/>
       `;
     });
-  ]]></script>
-</svg>
+  </script>
+</body>
+</html>
