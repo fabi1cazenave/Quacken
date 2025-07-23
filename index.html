@@ -49,22 +49,22 @@
       fill: #ddd;
     }
     #board {
-	  fill: #eee;
-	  stroke: #aaa8;
+      fill: #eee;
+      stroke: #aaa8;
       stroke-width: .5px;
-	  stroke-linecap: round;
-	  stroke-linejoin: round;
-	}
-	#keys {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #keys {
       stroke: #f88;
       stroke-width: 0.15px;
       stroke-dasharray: 1 2;
-	}
+    }
     @media (prefers-color-scheme: dark) {
       .dualKey { fill: #666; }
       rect     { fill: #444; }
       text     { fill: #bbb; }
-	  #board   { fill: #333; stroke: #6668; }
+      #board   { fill: #333; stroke: #6668; }
     }
   </style>
 
@@ -129,21 +129,21 @@
   <select onchange="setConfig(this.value)">
     <option value="crow">Corbeau</option>
     <option value="owl">Chouette</option>
-    <option value="sparrowhawk">Ã‰pervier</option>
+    <option value="sparrowhawk">Épervier</option>
     <option value="hoopoe">Huppe</option>
     <!-- 34 keys -->
     <option value="bluethroat">Gorgebleue</option>
     <option value="swift">Martinet</option>
     <option value="swallow">Hirondelle</option>
     <!-- 32 keys -->
-    <option value="kingfisher">Martin-pÃªcheur</option>
+    <option value="kingfisher">Martin-pêcheur</option>
     <option value="oscine">Pinson</option>
   </select>
 
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 140 940 100">
     <g id="outline">
       <path id="board"
-	    d="M202.5044,90.8471
+        d="M202.5044,90.8471
            C140.9044,53.5471 94.8044,67.1471 83.6412,71.2564
            C83.6412,71.2564 80.3085,72.5178 79.8817 75.2507
            L71.7680 124.9104
@@ -158,7 +158,7 @@
            A2.2627 2.2627 0.0 0 1 204.1088 171.1650
            L220.2237 184.6870
            A1.8 1.8 0.0 0 0 222.7596,184.4651
-           C237.7076,166.5870 244.9285,161.4340 268.3916 153.0820 
+           C237.7076,166.5870 244.9285,161.4340 268.3916 153.0820
            A1.8 1.8 0.0 0 0 269.4675 150.7749
            L267.4053 145.0590
            A1.8 1.8 0.0 0 1 268.4769,142.7535
@@ -315,8 +315,8 @@
   </svg>
 
   <script>// keyboard layout
-	document.querySelector("select").selectedIndex = 1;
-	document.querySelector("select").focus();
+    document.querySelector("select").selectedIndex = 1;
+    document.querySelector("select").focus();
     document.querySelectorAll(".matrix .key").forEach(key => {
       const dual = key.classList.contains("dual") ? `
         <rect width="${kw/2}" height="${kh/2}" rx="2" ry="2" y="${kh/2}" class="dualKey"/>
