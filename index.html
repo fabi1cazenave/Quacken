@@ -23,7 +23,7 @@
       width: 100%;
     }
 
-    /* geometry (XXX magic numbers) */
+    /* keyboard geometry (XXX magic numbers) */
     #left  { transform: translate(22px, -5px) rotate( 10deg); }
     #right { transform: translate(884px, 5px) rotate(-10deg); }
     #outline { transform: translate(-194px, -242px) scale(3.34); }
@@ -44,7 +44,6 @@
       color-scheme: light dark;
     }
     rect {
-      fill: #f8f8f8;
       fill: #fff;
       stroke: #666;
       stroke-width: .5px;
@@ -59,23 +58,19 @@
       fill: #ddd;
     }
     #board {
-      fill: #eee;
-      stroke: #aaa8;
-      stroke-width: .5px;
+      fill:   #7889a2;
+      stroke: #7889a280;
+      stroke-width: 1.0px;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
     #keys {
-      stroke: #f88;
-      stroke-width: 0.15px;
+      stroke: navy;
+      stroke-width: 0.5px;
       stroke-dasharray: 1 2;
     }
     @media (prefers-color-scheme: dark) {
-      text     { fill: #bbb; }
-      rect     { fill: #262628; }
-      .dualKey { fill: #404042; }
-      #board   { fill: #1e1c22; stroke: #4458; }
-      #keys    { stroke: #f888; }
+      /* TODO */
     }
   </style>
 
