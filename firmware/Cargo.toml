@@ -1,0 +1,43 @@
+[package]
+name = "Quacken_Zero"
+version = "0.1.0"
+authors = ["Nuclear-Squid, Kazé"]
+edition = "2024"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+keyberon = { git = "https://github.com/TeXitoi/keyberon" }
+usb-device = "*" # Keyberon already imports it, but we also need to use it directly
+# Using 'rtic' with the 'thumbv6' feature rather than 'cortex-m-rtic',
+# to avoid a deprecated dependency to atomic-polyfill 1.0.0.
+rtic = { version = "2.2.0", features = ["thumbv6-backend"] }
+cortex-m = "0.7.3"
+embedded-hal = "1.0"
+panic-halt = "0.2.0"
+portable-atomic = { version  = "1.11.1", features = ["critical-section"] }
+rp2040-hal = { version = "0.11.0", features = ["critical-section-impl", "rt", "defmt"] }
+rp2040-boot2 = { version = "0.3", optional = true }
+
+[features]
+default = ["boot2"]
+boot2 = ["rp2040-boot2"]
+
+# cargo build/run
+[profile.dev]
+codegen-units = 1
+debug = 2
+debug-assertions = true
+incremental = false
+opt-level = 3
+overflow-checks = true
+
+# cargo build/run --release
+[profile.release]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 3
+overflow-checks = false
